@@ -29,7 +29,7 @@ def input_students
     end
 
     students << {name: name, cohort: cohort.to_sym, hobby: :sport, hobby: :coding, country_of_birth: :England, height: "Tall"}
-    puts "Now we have #{students.count} students"
+    puts students.count == 1 ? "Now we have #{students.count} student" : "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
   end
