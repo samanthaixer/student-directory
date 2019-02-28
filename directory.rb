@@ -3,7 +3,7 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   #get the first name
-  name = gets.gsub(/\R+/, '')
+  name = STDIN.gets.gsub(/\R+/, '')
   #while the name is not empty, repeat this code
   while !name.empty? do
     valid_cohorts = [
@@ -20,17 +20,17 @@ def input_students
       "november",
       "december"]
     puts "enter a cohort"
-    cohort = gets.chomp.downcase
+    cohort = STDIN.gets.chomp.downcase
 
     if !valid_cohorts.include?(cohort)
       puts "incorrect cohort, please try again"
-      cohort = gets.chomp
+      cohort = STDIN.gets.chomp
     end
 
     @students << {name: name, cohort: cohort.to_sym, hobby: :coding, country_of_birth: :England, height: "Tall"}
     puts @students.count == 1 ? "Now we have #{@students.count} student" : "Now we have #{@students.count} students"
     #get another name from the user
-    name = gets.gsub(/\R+/, '')
+    name = STDIN.gets.gsub(/\R+/, '')
   end
 end
 def print_header
@@ -98,21 +98,34 @@ def save_students
   end
   file.close
 end
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-      @students << {name: name, cohort: cohort.to_sym}
+    @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+end
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist"
+    exit
+  end
 end
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
 #nothing happens until we call the methods
+try_load_students
 interactive_menu
 #  print_by_cohort(students)
