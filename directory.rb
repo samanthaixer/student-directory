@@ -4,7 +4,7 @@ def input_students
   #create an empty array
   students = []
   #get the first name
-  name = gets.chomp
+  name = gets.gsub(/\R+/, '')name = gets.gsub(/\R+/, '')
   #while the name is not empty, repeat this code
   while !name.empty? do
     valid_cohorts = [
@@ -31,7 +31,7 @@ def input_students
     students << {name: name, cohort: cohort.to_sym, hobby: :sport, hobby: :coding, country_of_birth: :England, height: "Tall"}
     puts students.count == 1 ? "Now we have #{students.count} student" : "Now we have #{students.count} students"
     #get another name from the user
-    name = gets.chomp
+    name = gets.gsub(/\R+/, '')
   end
   #return the array of input_students
   students
