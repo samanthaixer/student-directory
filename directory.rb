@@ -4,7 +4,7 @@ def input_students
   #create an empty array
   students = []
   #get the first name
-  name = gets.gsub(/\R+/, '')name = gets.gsub(/\R+/, '')
+  name = gets.gsub(/\R+/, '')
   #while the name is not empty, repeat this code
   while !name.empty? do
     valid_cohorts = [
@@ -62,7 +62,10 @@ def print_footer(names)
 end
 #nothing happens until we call the methods
 students = input_students
-print_header
-#print(students)
-print_by_cohort(students)
-print_footer(students)
+
+if !students.empty?
+  print_header
+  #print(students)
+  print_by_cohort(students)
+  print_footer(students)
+end
