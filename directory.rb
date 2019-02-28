@@ -24,7 +24,7 @@ def print(students)
   while index < students.length
     if students[index][:name][0] == "L"
       if students[index][:name].length < 12
-        puts "#{index+1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
+        puts "#{index+1}. #{students[index][:name].center(25)} (#{students[index][:cohort]} cohort)"
       end
     end
     index+=1
