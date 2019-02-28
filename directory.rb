@@ -7,7 +7,29 @@ def input_students
   name = gets.chomp
   #while the name is not empty, repeat this code
   while !name.empty? do
-    students << {name: name, cohort: :november, hobby: :sport, hobby: :coding, country_of_birth: :England, height: "Tall"}
+    valid_cohorts = [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december"]
+    puts "enter a cohort"
+    cohort = gets.chomp.downcase
+
+    if !valid_cohorts.include?(cohort)
+      puts "incorrect cohort, please try again"
+      cohort = gets.chomp
+    end
+
+
+    students << {name: name, cohort: cohort.to_sym, hobby: :sport, hobby: :coding, country_of_birth: :England, height: "Tall"}
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
