@@ -20,12 +20,14 @@ def print_header
   puts "--------------"
 end
 def print(students)
-  students.each_with_index do |student, index|
-    if student[:name][0] == "L"
-      if student[:name].length < 12
-        puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  index = 0
+  while index < students.length
+    if students[index][:name][0] == "L"
+      if students[index][:name].length < 12
+        puts "#{index+1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
       end
     end
+    index+=1
   end
 end
 def print_footer(names)
