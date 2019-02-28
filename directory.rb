@@ -28,7 +28,6 @@ def input_students
       cohort = gets.chomp
     end
 
-
     students << {name: name, cohort: cohort.to_sym, hobby: :sport, hobby: :coding, country_of_birth: :England, height: "Tall"}
     puts "Now we have #{students.count} students"
     #get another name from the user
@@ -52,11 +51,18 @@ def print(students)
     index+=1
   end
 end
+def print_by_cohort(students)
+  sorted_students = students.sort_by{ |student| student[:cohort] }
+  sorted_students.each_with_index do |student, index|
+    puts "#{index+1}. #{student[:name].center(25)} (#{student[:cohort]} cohort)"
+  end
+end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 #nothing happens until we call the methods
 students = input_students
 print_header
-print(students)
+#print(students)
+print_by_cohort(students)
 print_footer(students)
